@@ -1,0 +1,98 @@
+Simple Linear regression.
+
+Problem 2.6
+A soda vendor at Louisiana State University football games observes that more sodas
+are sold the warmer the temperature at game time is. Based on 32 home games
+covering five years, the vendor estimates the relationship between soda sales and
+temperature to be ^y = -240 + 8x, where ^y  the number of sodas she sells and x 
+temperature in degrees Fahrenheit,
+(a) Interpret the estimated slope and intercept. Do the estimates make sense? Why,
+or why not?
+(b) On a day when the temperature at game time is forecast to be 808F, predict how
+many sodas the vendor will sell.
+(c) Below what temperature are the predicted sales zero?
+(d) Sketch a graph of the estimated regression line.
+
+Problem 2.7
+You have the results of a simple linear regression based on state-level data and the
+District of Columbia, a total of N ¼ 51 observations.
+(a) The estimated error variance ^s2 ¼ 2:04672. What is the sum of the squared least
+squares residuals?
+(b) The estimated variance of b2 is 0.00098. What is the standard error of b2? What
+is the value of ðxi  xÞ2?
+(c) Suppose the dependent variable yi ¼ the state’s mean income (in thousands of
+dollars) of males who are 18 years of age or older and xi the percentage of males
+18 years or older who are high school graduates. If b2 ¼ 0:18, interpret this
+result.
+(d) Suppose x ¼ 69:139 and y ¼ 15:187, what is the estimate of the intercept
+parameter?
+(e) Given the results in (b) and (d), what is x2i
+?
+(f) For the state of Arkansas the value of yi ¼ 12:274 and the value of xi ¼ 58:3:
+Compute the least squares residual for Arkansas. (Hint: Use the information in
+parts (c) and (d).).
+
+
+Problem 2.10
+The owners of a motel discovered that a defective product was used in its construction.
+It took seven months to correct the defects, during which 14 rooms in the
+100-unit motel were taken out of service for 1 month at a time. The motel lost
+profits due to these closures, and the question of how to compute the losses was
+addressed by Adams (2008).7 For this exercise use the data in motel.dat.
+(a) The occupancy rate for the damaged motel is MOTEL_PCT, and the competitor
+occupancy rate is COMP_PCT. On the same graph, plot these variables against
+TIME. Which had the higher occupancy before the repair period? Which had the
+higher occupancy during the repair period?
+(b) Plot MOTEL_PCT against COMP_PCT. Does there seem to be a relationship
+between these two variables? Explain why such a relationship might exist.
+(c) Estimate a linear regression with y ¼ MOTEL_PCT and x ¼ COMP_PCT.
+Discuss the result.
+(d) Compute the least squares residuals from the regression results in (c). Plot these
+residuals against time. Does the model overpredict, underpredict, or accurately
+predict the motel’s occupancy rate during the repair period?
+(e) Consider a linear regression with y¼MOTEL_PCTand x¼RELPRICE, which is
+the ratio of the price per room charged by the motel in question relative to its
+competitors. What sign do you predict for the slope coefficient? Why? Does the
+sign of the estimated slope agree with your expectation?
+(f) Consider the linear regression with y ¼ MOTEL_PCTand x ¼ REPAIR, which is
+an indicator variable, taking the value 1 during the repair period and 0 otherwise.
+Discuss the interpretation of the least squares estimates. Does the motel appear to
+have suffered a loss of occupancy, and therefore profits, during the repair period?
+(g) Compute the average occupancy rate for the motel and competitors when the
+repairs were not being made (call these MOTEL0 and COMP0), and when they
+were being made (MOTEL1 and COMP1). During the nonrepair period, what
+was the difference between the average occupancies,MOTEL0  COMP0? Does
+this comparison seem to support the motel’s claims of lost profits during the
+repair period?
+(h) Estimate a linear regression model with y¼MOTEL_PCT–COMP_PCTand x¼
+REPAIR. How do the results of this regression relate to the result in part (g)?
+
+
+Problem 2.14
+Professor Ray C. Fair has for a number of years built and updated models that explain
+and predict the U.S. presidential elections. Visit his website at http://fairmodel.econ
+.yale.edu/vote2004/index2.htm. See in particular his paper entitled ‘‘AVote Equation
+for the 2004 Election.’’ The basic premise of the model is that the incumbent party’s
+share of the two-party [Democratic and Republican] popular vote [incumbent means
+the party in power at the time of the election] is affected by a number of factors
+relating to the economy, and variables relating to the politics, such as how long the
+incumbent party has been in power, and whether the President is running for
+re-election. Fair’s data, 33 observations for the election years from 1880 to 2008,
+are in the file fair4.dat. The dependent variable is VOTE ¼ percentage share of the
+popular vote won by the incumbent party. Consider the explanatory variable
+GROWTH ¼ growth rate in real per capita GDP in the first three quarters of the
+election year (annual rate). One would think that if the economy is doing well, and
+growth is high, the party in power would have a better chance of winning the election.
+(a) Using the data for 1916–2008, plot a scatter diagram of VOTE against GROWTH.
+Does there appear to be positive association?
+(b) Estimate the regression VOTE ¼ b1 þ b2GROWTH þ e by least squares using
+the data from 1916 to 2008. Report and discuss the estimation result. Sketch,
+by hand, the fitted line on the data scatter from (a).
+(c) Fit the regression in (b) using the data from 1916 to 2004. Predict the VOTE share
+for the incumbent party based on the actual 2008 value for GROWTH. How does
+the predicted vote for 2008 compare to the actual result?
+(d) Economywide inflation may spell doom for the incumbent party in an election.
+The variable INFLATION is the growth in prices over the first 15 quarters of an
+administration. Using the data from 1916 to 2008, plot VOTE against
+INFLATION. Using the same sample, report and discuss the estimation results
+for the model VOTE ¼ a1 þ a2INFLATION þ e.
