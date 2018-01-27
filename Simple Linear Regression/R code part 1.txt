@@ -1,0 +1,223 @@
+
+R version 3.2.5 (2016-04-14) -- "Very, Very Secure Dishes"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(haven)
+> capm4 <- read_dta("D:/Class Notes/Fall 17 Classes/ECON/Data_sets/capm4.dta")
+> View(capm4)
+> nrow(capm4)
+[1] 132
+> capm4$Disney_Y[capm4$dis - capm4$riskfree]<- "Disney_Y"
+Error in capm4$Disney_Y[capm4$dis - capm4$riskfree] <- "Disney_Y" : 
+  only 0's may be mixed with negative subscripts
+In addition: Warning messages:
+1: Unknown column 'DisneyY' 
+2: Unknown column 'DisneyY' 
+3: Unknown column 'DisneyY' 
+4: Unknown column 'DisneyY' 
+5: Unknown column 'Disney_Y' 
+> capm4$Disney_Y=[capm4$dis - capm4$riskfree]<- "Disney_Y"
+Error: unexpected '[' in "capm4$Disney_Y=["
+> capm4$Disney_Y=capm4$dis - capm4$riskfree
+> capm4$GE_Y=capm4$ge - capm4$riskfree
+> capm4$GM_Y=capm4$gm - capm4$riskfree
+> capm4$IBM_Y=capm4$ibm - capm4$riskfree
+> capm4$MICROSOFT_Y=capm4$msft - capm4$riskfree
+> capm4$EXXON_Y=capm4$xom - capm4$riskfree
+> capm4$Risk_X=capm4$mkt - capm4$riskfree
+> regDisney <- lm(Disney_Y ~ Risk_X)
+Error in eval(expr, envir, enclos) : object 'Disney_Y' not found
+> regDisney <- lm(Disney_Y ~ Risk_X, data = capm4)
+> summary(regDisney)
+
+Call:
+lm(formula = Disney_Y ~ Risk_X, data = capm4)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.182443 -0.028738 -0.007054  0.027853  0.276871 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.00366    0.00694  -0.527    0.599    
+Risk_X       0.91460    0.12015   7.612 4.87e-12 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.06848 on 130 degrees of freedom
+Multiple R-squared:  0.3083,	Adjusted R-squared:  0.303 
+F-statistic: 57.94 on 1 and 130 DF,  p-value: 4.866e-12
+
+> regGE <- lm(GE_Y ~ Risk_X, data = capm4)
+> summary(regGE)
+
+Call:
+lm(formula = GE_Y ~ Risk_X, data = capm4)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.156837 -0.036767 -0.004774  0.034106  0.181055 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.005324   0.005518  -0.965    0.336    
+Risk_X       0.858974   0.095525   8.992 2.48e-15 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.05444 on 130 degrees of freedom
+Multiple R-squared:  0.3835,	Adjusted R-squared:  0.3787 
+F-statistic: 80.86 on 1 and 130 DF,  p-value: 2.477e-15
+
+> regGM <- lm(GM_Y ~ Risk_X, data = capm4)
+> summary(regGM)
+
+Call:
+lm(formula = GM_Y ~ Risk_X, data = capm4)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.40666 -0.06120 -0.00273  0.06278  0.29125 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.007248   0.011393  -0.636    0.526    
+Risk_X       1.146838   0.197242   5.814 4.46e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.1124 on 130 degrees of freedom
+Multiple R-squared:  0.2064,	Adjusted R-squared:  0.2003 
+F-statistic: 33.81 on 1 and 130 DF,  p-value: 4.464e-08
+
+> regIBM <- lm(IBM_Y ~ Risk_X, data = capm4)
+> summary(regIBM)
+
+Call:
+lm(formula = IBM_Y ~ Risk_X, data = capm4)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.262998 -0.039921 -0.002788  0.038935  0.269202 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.010207   0.007114   1.435    0.154    
+Risk_X      1.148245   0.123152   9.324 3.83e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.07019 on 130 degrees of freedom
+Multiple R-squared:  0.4007,	Adjusted R-squared:  0.3961 
+F-statistic: 86.93 on 1 and 130 DF,  p-value: 3.829e-16
+
+> regMicrosoft <- lm(MICROSOFT_Y ~ Risk_X, data = capm4)
+> summary(regMicrosoft)
+
+Call:
+lm(formula = MICROSOFT_Y ~ Risk_X, data = capm4)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.26864 -0.05569 -0.00845  0.04261  0.35678 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.013737   0.009061   1.516    0.132    
+Risk_X      1.259919   0.156861   8.032 5.03e-13 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.0894 on 130 degrees of freedom
+Multiple R-squared:  0.3317,	Adjusted R-squared:  0.3265 
+F-statistic: 64.51 on 1 and 130 DF,  p-value: 5.034e-13
+
+> regExxon <- lm(EXXON_Y ~ Risk_X, data = capm4)
+> summary(regMicrosoft)
+
+Call:
+lm(formula = MICROSOFT_Y ~ Risk_X, data = capm4)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.26864 -0.05569 -0.00845  0.04261  0.35678 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 0.013737   0.009061   1.516    0.132    
+Risk_X      1.259919   0.156861   8.032 5.03e-13 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.0894 on 130 degrees of freedom
+Multiple R-squared:  0.3317,	Adjusted R-squared:  0.3265 
+F-statistic: 64.51 on 1 and 130 DF,  p-value: 5.034e-13
+
+> save.image("D:/Class Notes/Fall 17 Classes/ECON/Assignment 2/Q10/Rcode Q10.RData")
+> summary(regExxon)
+
+Call:
+lm(formula = EXXON_Y ~ Risk_X, data = capm4)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.127422 -0.032706 -0.002982  0.027316  0.216216 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.007966   0.005118  -1.556    0.122    
+Risk_X       0.461258   0.088607   5.206 7.35e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.0505 on 130 degrees of freedom
+Multiple R-squared:  0.1725,	Adjusted R-squared:  0.1661 
+F-statistic:  27.1 on 1 and 130 DF,  p-value: 7.349e-07
+
+> plot(regMicrosoft)
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+Hit <Return> to see next plot: 
+> 
+> abline(regMicrosoft)
+> abline(regMicrosoft)
+Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...) : 
+  plot.new has not been called yet
+> abline(lm(MICROSOFT_Y ~ Risk_X, data = capm4))
+Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...) : 
+  plot.new has not been called yet
+> plot.new()
+> abline(regMicrosoft)
+> abline(regMicrosoft)
+> abline(regMicrosoft)
+Error in int_abline(a = a, b = b, h = h, v = v, untf = untf, ...) : 
+  plot.new has not been called yet
+> plot (MICROSOFT_Y ~ Risk_X, data = capm4)
+> abline(regMicrosoft)
+> regExxon <- lm(EXXON_Y ~ Risk_X -1, data = capm4)
+> summary(regExxon)
+
+Call:
+lm(formula = EXXON_Y ~ Risk_X - 1, data = capm4)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.133878 -0.040743 -0.006133  0.019296  0.208411 
+
+Coefficients:
+       Estimate Std. Error t value Pr(>|t|)    
+Risk_X  0.53191    0.07651   6.952 1.53e-10 ***

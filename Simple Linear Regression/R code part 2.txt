@@ -1,0 +1,248 @@
+> library(haven)
+> library(haven)
+> fair4 <- read_dta("D:/Class Notes/Fall 17 Classes/ECON/Data_sets/fair4.dta")
+> View(fair4)
+> fit <- lm(vote ~ growth, data = fair4, fair$year>1915)
+Error in eval(expr, envir, enclos) : object 'fair' not found
+> fit <- lm(vote ~ growth, data = fair4, fair4$year>1915)
+> summary(fit)
+
+Call:
+lm(formula = vote ~ growth, data = fair4, subset = fair4$year > 
+    1915)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-6.866 -3.334 -1.003  3.004 10.826 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  50.8484     1.0125  50.218  < 2e-16 ***
+growth        0.8859     0.1819   4.871  7.2e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4.798 on 22 degrees of freedom
+Multiple R-squared:  0.5189,	Adjusted R-squared:  0.497 
+F-statistic: 23.73 on 1 and 22 DF,  p-value: 7.199e-05
+
+> plot (growth, vote, data = fair4)
+Error in plot(growth, vote, data = fair4) : object 'growth' not found
+> plot (growth, vote, data = fair4)
+Error in plot(growth, vote, data = fair4) : object 'growth' not found
+> plot (vote, data = fair4)
+Error in plot(vote, data = fair4) : object 'vote' not found
+> plot (growth, vote, data = fair)
+Error in plot(growth, vote, data = fair) : object 'growth' not found
+> view(fair4)
+Error: could not find function "view"
+> view (fair4)
+Error: could not find function "view"
+> View(fair4)
+> plot (growth, vote, data = fair)
+Error in plot(growth, vote, data = fair) : object 'growth' not found
+> attach(fair4)
+> plot(vote, growth)
+> plot(growth, vote)
+> plot(growth, vote, pch=19)
+> plot(growth, vote, pch=19, col="red")
+> plot(growth, vote, pch=19, col="red", year>1915)
+Error in plot.xy(xy, type, ...) : invalid plot type
+> plot(growth, vote, pch=19, col="red", fair4$year>1915)
+Error in plot.xy(xy, type, ...) : invalid plot type
+> plot(growth, vote | year>1915, pch=19, col="red")
+> plot(growth ~ vote | year>1915, pch=19, col="red")
+> plot (growth, vote, data = fair)
+Error in plot.window(...) : object 'fair' not found
+> plot (growth, vote, data = fair4)
+Warning messages:
+1: In plot.window(...) : "data" is not a graphical parameter
+2: In plot.xy(xy, type, ...) : "data" is not a graphical parameter
+3: In axis(side = side, at = at, labels = labels, ...) :
+  "data" is not a graphical parameter
+4: In axis(side = side, at = at, labels = labels, ...) :
+  "data" is not a graphical parameter
+5: In box(...) : "data" is not a graphical parameter
+6: In title(...) : "data" is not a graphical parameter
+> plot (fair4$growth, fair4$vote)
+There were 12 warnings (use warnings() to see them)
+> plot (x = fair4$growth, y = fair4$vote)
+> plot (x = fair4$growth, y = fair4$vote, if(fair4$year>1915))
+Error: unexpected ')' in "plot (x = fair4$growth, y = fair4$vote, if(fair4$year>1915))"
+> plot (x = fair4$growth, y = fair4$vote, fair4$year>1915)
+Error in plot.xy(xy, type, ...) : invalid plot type
+> plot (growth, vote, data = fair4)
+Warning messages:
+1: In plot.window(...) : "data" is not a graphical parameter
+2: In plot.xy(xy, type, ...) : "data" is not a graphical parameter
+3: In axis(side = side, at = at, labels = labels, ...) :
+  "data" is not a graphical parameter
+4: In axis(side = side, at = at, labels = labels, ...) :
+  "data" is not a graphical parameter
+5: In box(...) : "data" is not a graphical parameter
+6: In title(...) : "data" is not a graphical parameter
+> plot (growth, vote, data = fair4)
+There were 18 warnings (use warnings() to see them)
+> plot (growth, vote, data = fair4)
+There were 18 warnings (use warnings() to see them)
+> warnings()
+Warning messages:
+1: In doTryCatch(return(expr), name, parentenv, handler) :
+  "data" is not a graphical parameter
+2: In doTryCatch(return(expr), name, parentenv, handler) :
+  "data" is not a graphical parameter
+3: In doTryCatch(return(expr), name, parentenv, handler) :
+  "data" is not a graphical parameter
+4: In doTryCatch(return(expr), name, parentenv, handler) :
+  "data" is not a graphical parameter
+5: In doTryCatch(return(expr), name, parentenv, handler) :
+  "data" is not a graphical parameter
+6: In doTryCatch(return(expr), name, parentenv, handler) :
+  "data" is not a graphical parameter
+7: In doTryCatch(return(expr), name, parentenv, handler) :
+  "data" is not a graphical parameter
+8: In doTryCatch(return(expr), name, parentenv, handler) :
+  "data" is not a graphical parameter
+9: In doTryCatch(return(expr), name, parentenv, handler) :
+  "data" is not a graphical parameter
+10: In doTryCatch(return(expr), name, parentenv, handler) :
+  "data" is not a graphical parameter
+11: In doTryCatch(return(expr), name, parentenv, handler) :
+  "data" is not a graphical parameter
+12: In doTryCatch(return(expr), name, parentenv, handler) :
+  "data" is not a graphical parameter
+13: In plot.window(...) : "data" is not a graphical parameter
+14: In plot.xy(xy, type, ...) : "data" is not a graphical parameter
+15: In axis(side = side, at = at, labels = labels, ...) :
+  "data" is not a graphical parameter
+16: In axis(side = side, at = at, labels = labels, ...) :
+  "data" is not a graphical parameter
+17: In box(...) : "data" is not a graphical parameter
+18: In title(...) : "data" is not a graphical parameter
+There were 12 warnings (use warnings() to see them)
+> plot (growth, vote, data = fair4[fair4$year>1915])
+Error: Length of logical index vector must be 1 or 9, got: 33
+> plot (growth, vote, data = fair4[fair4$year>1915, ])
+Warning messages:
+1: In plot.window(...) : "data" is not a graphical parameter
+2: In plot.xy(xy, type, ...) : "data" is not a graphical parameter
+3: In axis(side = side, at = at, labels = labels, ...) :
+  "data" is not a graphical parameter
+4: In axis(side = side, at = at, labels = labels, ...) :
+  "data" is not a graphical parameter
+5: In box(...) : "data" is not a graphical parameter
+6: In title(...) : "data" is not a graphical parameter
+> plot (growth, vote, data = fair4[fair4$year>1915, ])
+There were 18 warnings (use warnings() to see them)
+> plot (x = fair4$growth[fair4$year>1915], y = fair4$vote[fair4$year>1915])
+There were 12 warnings (use warnings() to see them)
+> plot (x = fair4$growth, y = fair4$vote)
+> plot (growth, vote, data = fair4)
+Warning messages:
+1: In plot.window(...) : "data" is not a graphical parameter
+2: In plot.xy(xy, type, ...) : "data" is not a graphical parameter
+3: In axis(side = side, at = at, labels = labels, ...) :
+  "data" is not a graphical parameter
+4: In axis(side = side, at = at, labels = labels, ...) :
+  "data" is not a graphical parameter
+5: In box(...) : "data" is not a graphical parameter
+6: In title(...) : "data" is not a graphical parameter
+> plot (x = fair4$growth[fair4$year>1915], y = fair4$vote[fair4$year>1915])
+There were 12 warnings (use warnings() to see them)
+> plot (x = fair4$growth[fair4$year>1915], y = fair4$vote[fair4$year>1915], xlab="Growth", ylab="Vote", col="blue", pch = 10)
+> fit <- lm(vote ~ growth, data = fair4, fair$year>1915)
+Error in eval(expr, envir, enclos) : object 'fair' not found
+In addition: Warning messages:
+1: In jpeg(filename = "D:/Class Notes/Fall 17 Classes/ECON/Assignment 2/Q14 Scatterplot year>.jpeg",  :
+  unable to open file 'D:/Class Notes/Fall 17 Classes/ECON/Assignment 2/Q14 Scatterplot year>.jpeg' for writing
+2: In jpeg(filename = "D:/Class Notes/Fall 17 Classes/ECON/Assignment 2/Q14 Scatterplot year>.jpeg",  :
+  opening device failed
+> fit <- lm(vote ~ growth, data = fair4, fair4$year>1915)
+> summary(fit)
+
+Call:
+lm(formula = vote ~ growth, data = fair4, subset = fair4$year > 
+    1915)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-6.866 -3.334 -1.003  3.004 10.826 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  50.8484     1.0125  50.218  < 2e-16 ***
+growth        0.8859     0.1819   4.871  7.2e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4.798 on 22 degrees of freedom
+Multiple R-squared:  0.5189,	Adjusted R-squared:  0.497 
+F-statistic: 23.73 on 1 and 22 DF,  p-value: 7.199e-05
+
+> plot (x = fair4$growth[fair4$year>1915], y = fair4$vote[fair4$year>1915], xlab="Growth", ylab="Vote", col="blue", pch = 10)
+> abline(fit)
+> fit <- lm(vote ~ growth, data = fair4, fair4$year>1915 & fair4$year<2008)
+> summary(fit)
+
+Call:
+lm(formula = vote ~ growth, data = fair4, subset = fair4$year > 
+    1915 & fair4$year < 2008)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-7.065 -2.690 -1.036  2.929 10.590 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  51.0533     1.0379  49.187  < 2e-16 ***
+growth        0.8780     0.1825   4.811 9.39e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4.81 on 21 degrees of freedom
+Multiple R-squared:  0.5243,	Adjusted R-squared:  0.5016 
+F-statistic: 23.14 on 1 and 21 DF,  p-value: 9.387e-05
+
+> View(fair4, fair4&year=2008)
+Error: unexpected '=' in "View(fair4, fair4&year="
+> View(fair4, fair4$year=2008)
+Error: unexpected '=' in "View(fair4, fair4$year="
+> View(fair4, year=2008)
+Error in View : unused argument (year = 2008)
+> fair4[fair4$year=2008]
+Error: unexpected '=' in "fair4[fair4$year="
+> fair4[fair4$year=2008,]
+Error: unexpected '=' in "fair4[fair4$year="
+> fair4[fair4$year=2008, ]
+Error: unexpected '=' in "fair4[fair4$year="
+> fair4[fair4$year>2007, ]
+# A tibble: 1 × 9
+   year  vote party person duration   war growth inflation goodnews
+  <dbl> <dbl> <dbl>  <dbl>    <dbl> <dbl>  <dbl>     <dbl>    <dbl>
+1  2008  46.6    -1      0        1     0   0.22      2.88        3
+> fair4[fair4$year>2007]
+Error: Length of logical index vector must be 1 or 9, got: 33
+> fit <- lm(vote ~ inflation, data = fair4, fair4$year>1915)
+> summary(fit)
+
+Call:
+lm(formula = vote ~ inflation, data = fair4, subset = fair4$year > 
+    1915)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-17.2887  -3.2734  -0.4371   5.2854  10.5206 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  53.4077     2.2500  23.737   <2e-16 ***
+inflation    -0.4443     0.5999  -0.741    0.467    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 6.833 on 22 degrees of freedom
+Multiple R-squared:  0.02433,	Adjusted R-squared:  -0.02002 
+F-statistic: 0.5485 on 1 and 22 DF,  p-value: 0.4668
+
+> plot (x = fair4$inflation[fair4$year>1915], y = fair4$vote[fair4$year>1915], xlab="Growth", ylab="Vote", col="blue", pch = 10)
+> plot (x = fair4$inflation[fair4$year>1915], y = fair4$vote[fair4$year>1915], xlab="Inflation", ylab="Vote", col="blue", pch = 10)
