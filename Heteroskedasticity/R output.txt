@@ -1,0 +1,145 @@
+> library(haven)
+> pubexp <- read_dta("D:/Class Notes/Fall 17 Classes/ECON/Data_sets/pubexp.dta")
+> View(pubexp)
+> # creating y and x variables
+> y <- pubexp$ee/pubexp$p
+> x <- pubexp$gdp/pubexp$p
+> x2 = x^2
+> data1 <- cbind(pubexp, y)
+> data <- cbind(data1, x)
+> 
+> pubexp <- data
+> # Running least square regression
+> 
+> leastsq <- lm (y ~ x, data = pubexp)
+> summary(leastsq)
+
+Call:
+lm(formula = y ~ x, data = pubexp)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.21682 -0.08804 -0.01401  0.06517  0.38156 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.124573   0.048523  -2.567   0.0151 *  
+x            0.073173   0.005179  14.128 2.65e-15 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.1359 on 32 degrees of freedom
+Multiple R-squared:  0.8618,	Adjusted R-squared:  0.8575 
+F-statistic: 199.6 on 1 and 32 DF,  p-value: 2.65e-15
+
+> # getting residuals
+> leastsq.res <- resid(leastsq)
+> # Plotting residuals
+> 
+> library(ggfortify)
+> library(ggplot2)
+> autoplot(leastsq, data=pubexp, color = 'blue')
+> 
+> ggplot(pubexp, aes(x = pubexp$x, y = pubexp$y)) + geom_point() + 
++   stat_smooth( method = "lm", col = 'red')
+> # White formula
+> 
+> res = residuals(leastsq)
+> ressq = res^2
+> #yhat = leastsq$fitted.values
+> #yhat2 = yhat^2
+> 
+> #combining all into one dataset
+> #m4 = data.frame(cbind(ressq, yhat, yhat2))
+> 
+> m3 = data.frame(cbind(ressq, x, x2))
+> 
+> white <- lm(ressq ~ x + x2, data = m3)
+> summary(white)
+
+Call:
+lm(formula = ressq ~ x + x2, data = m3)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.048773 -0.011263 -0.005239  0.005350  0.097664 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)  
+(Intercept)  0.0176770  0.0161120   1.097   0.2810  
+x           -0.0052062  0.0045479  -1.145   0.2611  
+x2           0.0004840  0.0002638   1.835   0.0762 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.02513 on 31 degrees of freedom
+Multiple R-squared:  0.293,	Adjusted R-squared:  0.2474 
+F-statistic: 6.423 on 2 and 31 DF,  p-value: 0.004636
+
+> 
+> # critical chai-square 
+> qchisq(.95, 2)
+[1] 5.991465
+> #Robust std errors
+> library(sandwich)
+> #coef
+> 
+> #coeftest(leastsq, vcov = vcovHC(leastsq,type = "HC1"))
+> 
+> SE_robust <- sqrt(diag(vcovHC(leastsq, type="HC2")))
+> 
+> model2 <- summary(leastsq)
+> SE_robust
+(Intercept)           x 
+0.040783211 0.006307339 
+> 
+> model2$coefficients[,2] <- SE_robust
+> model2
+
+Call:
+lm(formula = y ~ x, data = pubexp)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.21682 -0.08804 -0.01401  0.06517  0.38156 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.124573   0.040783  -2.567   0.0151 *  
+x            0.073173   0.006307  14.128 2.65e-15 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.1359 on 32 degrees of freedom
+Multiple R-squared:  0.8618,	Adjusted R-squared:  0.8575 
+F-statistic: 199.6 on 1 and 32 DF,  p-value: 2.65e-15
+
+> qt(.975,32)
+[1] 2.036933
+> #Weightd least squares
+> 
+> model <- lm(y ~ x, data = pubexp, weights = (1/pubexp$x))
+> summary(model)
+
+Call:
+lm(formula = y ~ x, data = pubexp, weights = (1/pubexp$x))
+
+Weighted Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.072028 -0.038561 -0.008488  0.027706  0.105415 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -0.092921   0.028904  -3.215  0.00298 ** 
+x            0.069321   0.004412  15.713  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.04451 on 32 degrees of freedom
+Multiple R-squared:  0.8853,	Adjusted R-squared:  0.8817 
+F-statistic: 246.9 on 1 and 32 DF,  p-value: < 2.2e-16
+
+> 
+> confint(model, 'x', level = 0.95)
+       2.5 %     97.5 %
+x 0.06033514 0.07830786
